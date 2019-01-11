@@ -20,6 +20,8 @@ namespace MaPremiereApplicationWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        delegate void MonPremierDelegate(string str);
+        event MonPremierDelegate MonPremierEvenement;
         Button monSecondBouton;
 
         public MainWindow()
@@ -27,21 +29,35 @@ namespace MaPremiereApplicationWPF
             InitializeComponent();
             //MonPremierLabel.Content = "Contenu modifié";
             //MonSecondLabel.Content = "Contenu modifié encore une fois";
-            monSecondBouton = new Button();
+            monSecondBouton = new Button(); 
             monSecondBouton.Content = "Deuxième Bouton";
             monSecondBouton.Click += MonSecondBoutton_Click;
             MonPremierStackPanel.Children.Add(monSecondBouton);
 
+            //MonPremierEvenement += CeciEstUneMethode;
+            //Utilisation des lambda
+            string toto = "Toto";
+            MonPremierEvenement += (str) =>
+            {
+                MonPremierLabel.Content = str+toto;
+            };
         }
 
         
         private void MonPremierBoutton_Click(object sender, RoutedEventArgs e)
         {
-            MonPremierLabel.Content = DateTime.Now;
+            //MonPremierLabel.Content = DateTime.Now;
+            MonPremierEvenement("Premier Boutton");
         }
         private void MonSecondBoutton_Click(object sender, RoutedEventArgs e)
         {
-            MonPremierLabel.Content = DateTime.Now.Second;
+            //MonPremierLabel.Content = DateTime.Now.Second;
+            MonPremierEvenement("Deuxième Boutton");
+        }
+
+        private void CeciEstUneMethode(string str)
+        {
+            MonPremierLabel.Content = str;
         }
     }
 }
