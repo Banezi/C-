@@ -1,0 +1,6 @@
+virtual : pour que la surcharge soit possible dans la classe derivée vie le mot-clé override
+new : si on ne veut masquer la méthode originale dans la classe fille.
+base : appel de l'implementation de la classe de base.
+override : obligatoire dans la signature de la méthode lorsqu'on veut redefinir une méthode virtual ou abstract de la classe mère.
+abstract : applicable sur les fonctions. Fonction virtuelle avec signature mais sans implémentation.
+sealed : interdit la derivation de la classe

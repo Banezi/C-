@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DelegueEvenement
@@ -21,6 +22,7 @@ namespace DelegueEvenement
         {
             for(int i=0; i< n; i++)
             {
+                Thread.Sleep(100);
                 temp = new Random().Next(0,100);
                 if (temp < 5)
                 {

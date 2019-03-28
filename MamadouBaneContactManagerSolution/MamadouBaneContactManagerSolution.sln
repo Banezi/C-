@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManagerConsole", "ContactManagerConsole\ContactManagerConsole.csproj", "{6750298B-EA94-4A2F-A025-0EC783C2613A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialisationXML", "..\..\ServicesWeb\SerialisationSolution\SerialisationXML\SerialisationXML.csproj", "{0E1BB7FF-2B61-4120-A9F6-9B9E4A337372}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6750298B-EA94-4A2F-A025-0EC783C2613A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6750298B-EA94-4A2F-A025-0EC783C2613A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6750298B-EA94-4A2F-A025-0EC783C2613A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6750298B-EA94-4A2F-A025-0EC783C2613A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E1BB7FF-2B61-4120-A9F6-9B9E4A337372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E1BB7FF-2B61-4120-A9F6-9B9E4A337372}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E1BB7FF-2B61-4120-A9F6-9B9E4A337372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E1BB7FF-2B61-4120-A9F6-9B9E4A337372}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78ED7BAD-CCE5-484E-9B84-35FA26BC7674}
+	EndGlobalSection
+EndGlobal
