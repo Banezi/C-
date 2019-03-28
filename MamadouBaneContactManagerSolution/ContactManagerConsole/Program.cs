@@ -92,10 +92,10 @@ namespace ContactManagerConsole
             prenom = Console.ReadLine();
             Console.Write("Saisir le nom : ");
             nom = Console.ReadLine();
-            Console.Write("Saisir l'email : ");
-            email = Console.ReadLine();
             Console.Write("Saisir le nom de la société : ");
             societe = Console.ReadLine();
+            Console.Write("Saisir l'email : ");
+            email = Console.ReadLine();
             bool lienOk = true;
             do
             {
@@ -136,7 +136,7 @@ namespace ContactManagerConsole
         private static void enregistrer()
         {
             Console.WriteLine("Enregistrement du fichier '" + @"C:\Users\" + Environment.UserName + @"\Documents\ContactManager.db' ..........." );
-            Root.enregistrer();
+            manager.DossierRoot.enregistrer();
         }
 
         private static void changer()

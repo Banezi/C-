@@ -37,10 +37,6 @@ namespace ContactManagerConsole
                 Console.Write("    ");
             }
             Console.WriteLine("[D] " + this.Nom + " (création " + this.DateDeCreation + ")");
-            for(int nbd=0; nbd<this.ListeDossier.Count;nbd++)
-            {
-                this.ListeDossier[nbd].afficher(decallage + 1);
-            }
             for (int nbc = 0; nbc < this.ListeContact.Count; nbc++)
             {
                 for (int i = 0; i < decallage; i++)
@@ -49,6 +45,11 @@ namespace ContactManagerConsole
                 }
                 this.ListeContact[nbc].afficher();
             }
+            for (int nbd=0; nbd<this.ListeDossier.Count;nbd++)
+            {
+                this.ListeDossier[nbd].afficher(decallage + 1);
+            }
+            
         }
 
         public void enregistrer()
@@ -80,9 +81,6 @@ namespace ContactManagerConsole
             return _rootDeserializer;
         }
 
-        public void ajouterdossier(string nomDossier)
-        {
-            
-        }
+        
     }
 }
