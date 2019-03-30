@@ -265,8 +265,9 @@ namespace ContactManagerConsole
 
         private static void enregistrer()
         {
-            Console.WriteLine("Enregistrement du fichier '" + @"C:\Users\" + Environment.UserName + @"\Documents\ContactManagerSerialiserXML.db' ...........");
-            manager.FabriqueSerialisation.CreerSerialisation("XML");
+            string typeSerialisation = "Binaire";
+            Console.WriteLine("Enregistrement du fichier '" + @"C:\Users\" + Environment.UserName + @"\Documents\ContactManagerSerialiser" + typeSerialisation +".db' ...........");
+            manager.FabriqueSerialisation.CreerSerialisation(typeSerialisation);
             manager.FabriqueSerialisation.TypeSerialisation.Serialiser(manager.DossierRoot);
         }
 

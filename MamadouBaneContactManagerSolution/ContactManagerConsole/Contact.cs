@@ -8,6 +8,7 @@ namespace ContactManagerConsole
 {
     public enum Lien { ami, collegue, relation, reseau}
 
+    [Serializable]
     public class Contact
     {
         public string Nom { get; set; }

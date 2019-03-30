@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 
 namespace ContactManagerConsole
 {
+    [Serializable]
     public class Dossier
     {
         public string Nom { get; set; }
