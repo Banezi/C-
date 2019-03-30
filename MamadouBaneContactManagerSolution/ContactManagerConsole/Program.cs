@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -140,27 +141,51 @@ namespace ContactManagerConsole
 
         private static void ajoutercontact(string nom, string prenom, string societe, string email, string lienSaisi)
         {
-            Lien lien;
-            switch (lienSaisi)
+            Lien lien = Lien.ami;
+            bool lienOK = true;
+            do
             {
-                case "ami":
-                    lien = Lien.ami;
-                    break;
-                case "collegue":
-                    lien = Lien.collegue;
-                    break;
-                case "relation":
-                    lien = Lien.relation;
-                    break;
-                case "reseau":
-                    lien = Lien.reseau;
-                    break;
-                default:
-                    lien = Lien.ami;
-                    break;
+                switch (lienSaisi)
+                {
+                    case "ami":
+                        lien = Lien.ami;
+                        lienOK = true;
+                        break;
+                    case "collegue":
+                        lien = Lien.collegue;
+                        lienOK = true;
+                        break;
+                    case "relation":
+                        lien = Lien.relation;
+                        lienOK = true;
+                        break;
+                    case "reseau":
+                        lien = Lien.reseau;
+                        lienOK = true;
+                        break;
+                    default:
+                        Console.WriteLine("Le lien saisi n'est pas valide. Veuillez saisir une valeur correcte !");
+                        Console.Write("lien = ");
+                        lienSaisi = Console.ReadLine(); 
+                        lienOK = false;
+                        break;
+                }
+            } while (!lienOK);
+            
+            while(!EmailEstValide(email))
+            {
+                Console.WriteLine("L'adresse email saisi n'est pas valide. Veuillez saisir une adresse email correcte !");
+                Console.Write("email : ");
+                email = Console.ReadLine();
             }
             Contact nvoContact = new Contact(prenom, nom, email, societe, lien);
             manager.ajoutercontact(nvoContact);
+        }
+
+        private static bool EmailEstValide(string email)
+        {
+            System.Text.RegularExpressions.Regex myRegex = new Regex(@"^([\w]+)@([\w]+)\.([\w]+)$");
+            return myRegex.IsMatch(email); 
         }
 
         private static void ajouterdossier(string nomDossier)
