@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
@@ -39,6 +40,12 @@ namespace ContactManagerConsole
             } while (cle.Length != 8);
             CLE = cle;
 
+            //Enregistrement de la clé dans un fichier sérialisé en binaire
+            FileStream mFile = new FileStream(@"cle_xml.code", FileMode.Create);
+            BinaryFormatter mS = new BinaryFormatter();
+            mS.Serialize(mFile, CLE);
+            mFile.Close();
+
             cryptic.Key = ASCIIEncoding.ASCII.GetBytes(CLE);
             cryptic.IV = ASCIIEncoding.ASCII.GetBytes(WindowsIdentity.GetCurrent().User.ToString().Substring(0, 8));
 
@@ -57,11 +64,17 @@ namespace ContactManagerConsole
 
         public override Dossier DecrypterDeserialiser()
         {
-            Console.WriteLine("La clé de décryptage est : " + CLE);
             string fichierCrypte = @"C:\Users\" + Environment.UserName + @"\Documents\ContactManagerSerialiserXMLCrypter.db";
             FileStream stream = new FileStream(fichierCrypte, FileMode.Open, FileAccess.Read);
 
             DESCryptoServiceProvider cryptic = new DESCryptoServiceProvider();
+
+            //Décryptage de la clé
+            FileStream mCleFile = new FileStream(@"cle_xml.code", FileMode.Open);
+            BinaryFormatter mSC = new BinaryFormatter();
+            string CLE = (string)mSC.Deserialize(mCleFile);
+            mCleFile.Close();
+            Console.WriteLine("La clé est : " + CLE);
 
             string cle = "";
             int tentative = 3;

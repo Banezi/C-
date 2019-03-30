@@ -18,10 +18,11 @@ namespace ContactManagerConsole
             bool fichierExist = false;
             if(File.Exists(@"C:\Users\" + Environment.UserName + @"\Documents\ContactManagerSerialiserXML.db"))
             {
-                Root = Dossier.recuperer();
-                //ContactManager m = new ContactManager();
-                //m.FabriqueSerialisation.CreerSerialisation("XML");
-                //Root = m.FabriqueSerialisation.TypeSerialisation.DecrypterDeserialiser();
+                //Root = Dossier.recuperer();
+
+                ContactManager m = new ContactManager();
+                m.FabriqueSerialisation.CreerSerialisation("XML");
+                Root = m.FabriqueSerialisation.TypeSerialisation.DecrypterDeserialiser();
                 fichierExist = true;
             }
             else
@@ -265,7 +266,7 @@ namespace ContactManagerConsole
 
         private static void enregistrer()
         {
-            string typeSerialisation = "Binaire";
+            string typeSerialisation = "XML";
             Console.WriteLine("Enregistrement du fichier '" + @"C:\Users\" + Environment.UserName + @"\Documents\ContactManagerSerialiser" + typeSerialisation +".db' ...........");
             manager.FabriqueSerialisation.CreerSerialisation(typeSerialisation);
             manager.FabriqueSerialisation.TypeSerialisation.Serialiser(manager.DossierRoot);

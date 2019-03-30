@@ -40,6 +40,11 @@ namespace ContactManagerConsole
                 cle = Console.ReadLine();
             } while (cle.Length != 8);
             CLE = cle;
+            //Enregistrement de la clé dans un fichier sérialisé en binaire
+            FileStream mFile = new FileStream(@"cle_binaire.code", FileMode.Create);
+            BinaryFormatter mS = new BinaryFormatter();
+            mS.Serialize(mFile, CLE);
+            mFile.Close();
 
             cryptic.Key = ASCIIEncoding.ASCII.GetBytes(CLE);
             cryptic.IV = ASCIIEncoding.ASCII.GetBytes(WindowsIdentity.GetCurrent().User.ToString().Substring(0, 8));
@@ -58,13 +63,17 @@ namespace ContactManagerConsole
         }
         
         public override Dossier DecrypterDeserialiser()
-        {
-            Console.WriteLine("La clé de décryptage est : " + CLE);
-            
+        {   
             FileStream stream = new FileStream(fichierBinaireSerialiserCrypter, FileMode.Open, FileAccess.Read);
 
             DESCryptoServiceProvider cryptic = new DESCryptoServiceProvider();
 
+            //Décryptage de la clé
+            FileStream mCleFile = new FileStream(@"cle_binaire.code", FileMode.Open);
+            BinaryFormatter mSC = new BinaryFormatter();
+            string CLE = (string)mSC.Deserialize(mCleFile);
+            mCleFile.Close();
+            Console.WriteLine("La clé est : " + CLE);
             string cle = "";
             int tentative = 3;
             do
