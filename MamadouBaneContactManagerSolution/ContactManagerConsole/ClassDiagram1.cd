@@ -1,28 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ContactManagerConsole.Contact">
+  <Class Name="ContactManagerConsole.Contact" Collapsed="true">
     <Position X="5.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAIAAAAAAAAAAAACAAgAAAACAAAAgAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAAIAAAAAAAAAAAAGAggAAAACAAAAgAAAA=</HashCode>
       <FileName>Contact.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ContactManagerConsole.Dossier">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+  <Class Name="ContactManagerConsole.Dossier" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAACAAgAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAgAACAIAAQAAAAAIAAAGAAgAgIAAAAAAAEAAA=</HashCode>
       <FileName>Dossier.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ContactManagerConsole.Program" Collapsed="true">
-    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Position X="7" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAEAAAAAAAAAABAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAACAAAAAQAAAMAEAAAAAIAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="ContactManagerConsole.Lien">
-    <Position X="0.5" Y="2.75" Width="1.5" />
+  <Class Name="ContactManagerConsole.ContactManager" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAGAQAAIAEAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>ContactManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ContactManagerConsole.FabriqueSerialisation" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FabriqueSerialisation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ContactManagerConsole.Serialisation" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgCAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Serialisation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ContactManagerConsole.SerialisationBinaire" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SerialisationBinaire.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ContactManagerConsole.SerialisationXML" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SerialisationXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ContactManagerConsole.Lien" Collapsed="true">
+    <Position X="5.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAACAAAAAAAAgAAAAAAAAAAAgA=</HashCode>
       <FileName>Contact.cs</FileName>

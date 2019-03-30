@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ContactManagerConsole
@@ -14,9 +15,14 @@ namespace ContactManagerConsole
         static void Main(string[] args)
         {
             //Création ou Récupération de Root 
-            if(File.Exists(@"C:\Users\" + Environment.UserName + @"\Documents\ContactManager.db"))
+            bool fichierExist = false;
+            if(File.Exists(@"C:\Users\" + Environment.UserName + @"\Documents\ContactManagerSerialiserXML.db"))
             {
                 Root = Dossier.recuperer();
+                //ContactManager m = new ContactManager();
+                //m.FabriqueSerialisation.CreerSerialisation("XML");
+                //Root = m.FabriqueSerialisation.TypeSerialisation.DecrypterDeserialiser();
+                fichierExist = true;
             }
             else
             {
@@ -24,7 +30,134 @@ namespace ContactManagerConsole
             }
 
             manager = new ContactManager(Root);
+            if(fichierExist)
+            {
+                Dossier current = manager.DossierRoot;
+                while(current.ListeDossier.Count>0)
+                {
+                    manager.Parent = current;
+                    current = current.ListeDossier[current.ListeDossier.Count - 1];
+                }
+                manager.Current = current;
+            }
+            //Console.WriteLine("Parent : " + manager.Parent.Nom);
+            //Console.WriteLine("Current : " + manager.Current.Nom);
 
+            //Affichage menu
+            afficherMenu2();
+            
+            //Console.WriteLine("\n\nAppuyez sur entrée pour quitter!");
+            //Console.ReadLine();
+        }
+
+        private static void afficherMenu2()
+        {
+            char continuer = 'O';
+            do
+            {
+                Console.WriteLine("Instruction : Dans ce menu vous allez interagir avec le programme en ligne de commande !\n");
+                Console.WriteLine("Pour afficher le contenu du dossier racine taper : afficher\n");
+                Console.WriteLine("Pour enregistrer le contenu du dossier racine taper : enregistrer\n");
+                Console.WriteLine("Pour ajouter un dossier taper : ajouterdossier nomdossier\n");
+                Console.WriteLine("Pour ajouter un contact taper : ajoutercontact nom prenom société email lien\n");
+                Console.WriteLine("Attention les valeurs possibles pour lien sont : ami, collegue, relation, reseau\n");
+                Console.WriteLine("Pour quitter taper : quitter\n");
+
+                bool choixOk = false;
+                do
+                {
+                    string lignecommande = "";
+                    Console.Write(">");
+                    lignecommande = Console.ReadLine();
+                    string[] commande = lignecommande.Split(' ');
+
+                    string choix = commande[0];
+                
+                    switch (choix)
+                    {
+                        case "quitter":
+                            choixOk = true;
+                            return;
+                        case "afficher":
+                            afficher();
+                            choixOk = true;
+                            break;
+                        case "enregistrer":
+                            enregistrer();
+                            choixOk = true;
+                            break;
+                        case "ajouterdossier":
+                            string nomDossier ="";
+                            for (int i = 1; i < commande.Length; i++)
+                            {
+                                nomDossier += commande[i];
+                                if (i != commande.Length)
+                                    nomDossier += " ";
+                            }
+                            
+                            ajouterdossier(nomDossier);
+                            afficher();
+                            choixOk = true;
+                            break;
+                        case "ajoutercontact":
+                            if (commande.Length != 6)
+                            {
+                                Console.WriteLine("Commande incorrecte! Veuillez taper une commande correcte !");
+                                choixOk = false;
+                            }
+                            else
+                            {
+                                ajoutercontact(commande[1], commande[2], commande[3], commande[4], commande[5]);
+                                choixOk = true;
+                            }
+           
+                            break;
+                        default:
+                            Console.WriteLine("Instruction inconnue. Veuillez taper une commande valide !");
+                            choixOk = false;
+                            break;
+                    }
+                } while (!choixOk);
+
+                Console.WriteLine("\nVoulez-vous continuer ? (O/N)");
+                continuer = Console.ReadLine().ElementAt(0);
+                Console.WriteLine("\n\n");
+            } while (continuer == 'O');
+
+        }
+
+        private static void ajoutercontact(string nom, string prenom, string societe, string email, string lienSaisi)
+        {
+            Lien lien;
+            switch (lienSaisi)
+            {
+                case "ami":
+                    lien = Lien.ami;
+                    break;
+                case "collegue":
+                    lien = Lien.collegue;
+                    break;
+                case "relation":
+                    lien = Lien.relation;
+                    break;
+                case "reseau":
+                    lien = Lien.reseau;
+                    break;
+                default:
+                    lien = Lien.ami;
+                    break;
+            }
+            Contact nvoContact = new Contact(prenom, nom, email, societe, lien);
+            manager.ajoutercontact(nvoContact);
+        }
+
+        private static void ajouterdossier(string nomDossier)
+        {
+            manager.ajouterdossier(nomDossier);
+        }
+
+        private static void afficherMenu1()
+        {
             char continuer = 'O';
             do
             {
@@ -78,10 +211,7 @@ namespace ContactManagerConsole
                 Console.WriteLine("\nVoulez-vous continuer ? (O/N)");
                 continuer = Console.ReadLine().ElementAt(0);
                 Console.WriteLine("\n\n");
-            } while (continuer=='O');
-            
-            Console.WriteLine("\n\nAppuyez sur entrée pour quitter!");
-            Console.ReadLine();
+            } while (continuer == 'O');
         }
 
         private static void ajoutercontact()
@@ -135,8 +265,9 @@ namespace ContactManagerConsole
 
         private static void enregistrer()
         {
-            Console.WriteLine("Enregistrement du fichier '" + @"C:\Users\" + Environment.UserName + @"\Documents\ContactManager.db' ..........." );
-            manager.DossierRoot.enregistrer();
+            Console.WriteLine("Enregistrement du fichier '" + @"C:\Users\" + Environment.UserName + @"\Documents\ContactManagerSerialiserXML.db' ...........");
+            manager.FabriqueSerialisation.CreerSerialisation("XML");
+            manager.FabriqueSerialisation.TypeSerialisation.Serialiser(manager.DossierRoot);
         }
 
         private static void changer()

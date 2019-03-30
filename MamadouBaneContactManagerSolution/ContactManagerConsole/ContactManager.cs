@@ -12,10 +12,13 @@ namespace ContactManagerConsole
         public Dossier DossierRoot { get; set; }
         public Dossier Current { get; set; }
         public Dossier Parent { get; set; }
-
+        public FabriqueSerialisation FabriqueSerialisation { get; set; }
         public ContactManager()
         {
-
+            DossierRoot = new Dossier();
+            Current = DossierRoot;
+            Parent = DossierRoot;
+            FabriqueSerialisation = new FabriqueSerialisation();
         }
 
         public ContactManager(Dossier dossierRoot)
@@ -23,6 +26,7 @@ namespace ContactManagerConsole
             DossierRoot = dossierRoot;
             Current = DossierRoot;
             Parent = DossierRoot;
+            FabriqueSerialisation = new FabriqueSerialisation();
         }
 
         public void ajouterdossier(string nomDossier)
