@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6750298B-EA94-4A2F-A025-0EC783C2613A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ContactManagerConsole</RootNamespace>
-    <AssemblyName>ContactManagerConsole</AssemblyName>
+    <ProjectGuid>{85FF83C9-4DF6-4FF9-A4C9-BC02630A6394}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ContactManagerSerialisation</RootNamespace>
+    <AssemblyName>ContactManagerSerialisation</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,18 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Contact.cs" />
+    <Compile Include="ContactManager.cs" />
+    <Compile Include="Dossier.cs" />
+    <Compile Include="FabriqueSerialisation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ContactManagerSerialisation\ContactManagerSerialisation.csproj">
-      <Project>{85ff83c9-4df6-4ff9-a4c9-bc02630a6394}</Project>
-      <Name>ContactManagerSerialisation</Name>
-    </ProjectReference>
+    <Compile Include="Serialisation.cs" />
+    <Compile Include="SerialisationBinaire.cs" />
+    <Compile Include="SerialisationXML.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
