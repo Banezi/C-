@@ -24,7 +24,6 @@ namespace ContactManagerConsole
             
             Console.WriteLine(dossier.Nom + " est serialiser dans le fichier " + fichierBinaireSerialiser);
             Crypter();
-            DecrypterDeserialiser();
         }
         
         public override void Crypter()
@@ -73,7 +72,7 @@ namespace ContactManagerConsole
             BinaryFormatter mSC = new BinaryFormatter();
             string CLE = (string)mSC.Deserialize(mCleFile);
             mCleFile.Close();
-            Console.WriteLine("La clé est : " + CLE);
+            
             string cle = "";
             int tentative = 3;
             do
@@ -96,6 +95,7 @@ namespace ContactManagerConsole
             if (!cle.Equals(CLE))
             {
                 Console.WriteLine("Vous n'avez pas saisi la bonne clé de decryptage, nous n'avez pas le droit d'accéder au fichier");
+                Console.WriteLine("La clé était : " + CLE);
                 return null;
             }
             cryptic.Key = ASCIIEncoding.ASCII.GetBytes(CLE);

@@ -22,7 +22,8 @@ namespace ContactManagerConsole
 
         public Dossier()
         {
-            
+            ListeDossier = new List<Dossier>();
+            ListeContact = new List<Contact>();
         }
 
         public Dossier(string nom)

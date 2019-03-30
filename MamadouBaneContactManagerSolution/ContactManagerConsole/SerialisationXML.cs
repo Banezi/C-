@@ -22,7 +22,6 @@ namespace ContactManagerConsole
             stream.Close();
             Console.WriteLine(dossier.Nom + " est serialiser dans le fichier " + @"C:\Users\" + Environment.UserName + @"\Documents\ContactManagerSerialiserXML.db");
             Crypter();
-            //DecrypterDeserialiser();
         }
 
         public override void Crypter()
@@ -74,7 +73,7 @@ namespace ContactManagerConsole
             BinaryFormatter mSC = new BinaryFormatter();
             string CLE = (string)mSC.Deserialize(mCleFile);
             mCleFile.Close();
-            Console.WriteLine("La clé est : " + CLE);
+            
 
             string cle = "";
             int tentative = 3;
@@ -98,6 +97,7 @@ namespace ContactManagerConsole
             if (!cle.Equals(CLE))
             {
                 Console.WriteLine("Vous n'avez pas saisi la bonne clé de decryptage, nous n'avez pas le droit d'accéder au fichier");
+                Console.WriteLine("La clé était : " + CLE);
                 return null;
             }
             cryptic.Key = ASCIIEncoding.ASCII.GetBytes(CLE);
@@ -111,7 +111,7 @@ namespace ContactManagerConsole
 
             //Affichage 
             Console.WriteLine("Le fichier " + @"C:\Users\" + Environment.UserName + @"\Documents\ContactManagerSerialiserXMLCrypter.db a bien été décrypter !");
-            Console.WriteLine("La chaine decryptée est : " + data);
+            //Console.WriteLine("La chaine decryptée est : " + data);
 
             //Déserialisation
             XmlSerializer deserializer = new XmlSerializer(typeof(Dossier));

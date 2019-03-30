@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dossier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Nom>Root</Nom>
+  <DateDeCreation>2019-03-27T15:21:15.6451394+01:00</DateDeCreation>
+  <DateDeModification>2019-03-27T15:21:15.6551486+01:00</DateDeModification>
+  <ListeDossier>
+    <Dossier>
+      <Nom>dossier 1</Nom>
+      <DateDeCreation>2019-03-28T04:19:30.460809+01:00</DateDeCreation>
+      <DateDeModification>2019-03-28T04:19:30.460809+01:00</DateDeModification>
+      <ListeDossier>
+        <Dossier>
+          <Nom>dossier 2</Nom>
+          <DateDeCreation>2019-03-28T04:20:02.3356545+01:00</DateDeCreation>
+          <DateDeModification>2019-03-28T04:20:02.3356545+01:00</DateDeModification>
+          <ListeDossier>
+            <Dossier>
+              <Nom>dossier3</Nom>
+              <DateDeCreation>2019-03-28T04:23:30.7613312+01:00</DateDeCreation>
+              <DateDeModification>2019-03-28T04:23:30.7613312+01:00</DateDeModification>
+              <ListeDossier />
+              <ListeContact>
+                <Contact>
+                  <Nom>Truc</Nom>
+                  <Prenom>Sylvain</Prenom>
+                  <Email>Sylvain.Truc@capgemini.com</Email>
+                  <Societe>Capgemini</Societe>
+                  <Lien>ami</Lien>
+                  <DateDeCreation>2019-03-28T04:26:55.48809+01:00</DateDeCreation>
+                  <DateDeModification>2019-03-28T04:26:55.48809+01:00</DateDeModification>
+                </Contact>
+              </ListeContact>
+            </Dossier>
+          </ListeDossier>
+          <ListeContact>
+            <Contact>
+              <Nom>Dupont</Nom>
+              <Prenom>François</Prenom>
+              <Email>françois.dupond@capgemini.com</Email>
+              <Societe>Capgemini</Societe>
+              <Lien>collegue</Lien>
+              <DateDeCreation>2019-03-28T04:22:08.2190271+01:00</DateDeCreation>
+              <DateDeModification>2019-03-28T04:22:08.2190271+01:00</DateDeModification>
+            </Contact>
+          </ListeContact>
+        </Dossier>
+      </ListeDossier>
+      <ListeContact />
+    </Dossier>
+  </ListeDossier>
+  <ListeContact />
+</Dossier>

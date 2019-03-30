@@ -16,14 +16,26 @@ namespace ContactManagerConsole
         {
             //Création ou Récupération de Root 
             bool fichierExist = false;
-            if(File.Exists(@"C:\Users\" + Environment.UserName + @"\Documents\ContactManagerSerialiserXML.db"))
+            string fichierSerialiserXML = @"C:\Users\" + Environment.UserName + @"\Documents\ContactManagerSerialiserXML.db";
+            string fichierSerialiserBinaire = @"C:\Users\" + Environment.UserName + @"\Documents\ContactManagerSerialiserBinaire.db";
+            string typeSerialisation = "";
+            if (File.Exists(fichierSerialiserXML) || File.Exists(fichierSerialiserBinaire))
             {
-                //Root = Dossier.recuperer();
-
+                if((File.Exists(fichierSerialiserXML) && !File.Exists(fichierSerialiserBinaire)) || (File.Exists(fichierSerialiserXML) && File.Exists(fichierSerialiserBinaire)))
+                {
+                    typeSerialisation = "XML";
+                }
+                else if (!File.Exists(fichierSerialiserXML) && File.Exists(fichierSerialiserBinaire))
+                {
+                    typeSerialisation = "Binaire";
+                }
+                //Console.WriteLine("typeSerialisation : " + typeSerialisation);
                 ContactManager m = new ContactManager();
-                m.FabriqueSerialisation.CreerSerialisation("XML");
+                m.FabriqueSerialisation.CreerSerialisation(typeSerialisation);
                 Root = m.FabriqueSerialisation.TypeSerialisation.DecrypterDeserialiser();
                 fichierExist = true;
+                if (Root == null)
+                    return;
             }
             else
             {
@@ -53,24 +65,23 @@ namespace ContactManagerConsole
 
         private static void afficherMenu2()
         {
-            char continuer = 'O';
+            Console.WriteLine("\nInstruction : Dans ce menu vous allez interagir avec le programme en ligne de commande !\n");
+            Console.WriteLine("Pour afficher le contenu du dossier racine taper : afficher\n");
+            Console.WriteLine("Pour enregistrer le contenu du dossier racine taper : enregistrer\n");
+            Console.WriteLine("Pour ajouter un dossier taper : ajouterdossier nomdossier\n");
+            Console.WriteLine("Pour ajouter un contact taper : ajoutercontact nom prenom société email lien\n");
+            Console.WriteLine("Attention les valeurs possibles pour lien sont : ami, collegue, relation, reseau\n");
+            Console.WriteLine("Pour quitter taper : quitter\n");
+            string[] commande;
             do
             {
-                Console.WriteLine("Instruction : Dans ce menu vous allez interagir avec le programme en ligne de commande !\n");
-                Console.WriteLine("Pour afficher le contenu du dossier racine taper : afficher\n");
-                Console.WriteLine("Pour enregistrer le contenu du dossier racine taper : enregistrer\n");
-                Console.WriteLine("Pour ajouter un dossier taper : ajouterdossier nomdossier\n");
-                Console.WriteLine("Pour ajouter un contact taper : ajoutercontact nom prenom société email lien\n");
-                Console.WriteLine("Attention les valeurs possibles pour lien sont : ami, collegue, relation, reseau\n");
-                Console.WriteLine("Pour quitter taper : quitter\n");
-
                 bool choixOk = false;
                 do
                 {
                     string lignecommande = "";
                     Console.Write(">");
                     lignecommande = Console.ReadLine();
-                    string[] commande = lignecommande.Split(' ');
+                    commande = lignecommande.Split(' ');
 
                     string choix = commande[0];
                 
@@ -120,10 +131,10 @@ namespace ContactManagerConsole
                     }
                 } while (!choixOk);
 
-                Console.WriteLine("\nVoulez-vous continuer ? (O/N)");
-                continuer = Console.ReadLine().ElementAt(0);
+                //Console.WriteLine("\nVoulez-vous continuer ? (O/N)");
+                //continuer = Console.ReadLine().ElementAt(0);
                 Console.WriteLine("\n\n");
-            } while (continuer == 'O');
+            } while (!commande[0].Equals("quitter"));
 
         }
 
@@ -266,7 +277,14 @@ namespace ContactManagerConsole
 
         private static void enregistrer()
         {
-            string typeSerialisation = "XML";
+            string typeSerialisation = "";
+            do
+            {
+                Console.Write("Choisir le type de sérialisation (XML ou Binaire) : ");
+                typeSerialisation = Console.ReadLine();
+
+            } while (!typeSerialisation.Equals("XML") && !typeSerialisation.Equals("Binaire"));
+            
             Console.WriteLine("Enregistrement du fichier '" + @"C:\Users\" + Environment.UserName + @"\Documents\ContactManagerSerialiser" + typeSerialisation +".db' ...........");
             manager.FabriqueSerialisation.CreerSerialisation(typeSerialisation);
             manager.FabriqueSerialisation.TypeSerialisation.Serialiser(manager.DossierRoot);
